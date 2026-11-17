@@ -82,7 +82,7 @@ export const balconTerraza: Project = {
   status: "propuesta",
   area: "7,28 × 3,00 m",
   featured: true,
-  order: 1,
+  order: 2,
   cover: {
     image: portada,
     alt: "Balcón a pleno sol con macetones de achira en los extremos y jardineras de gramíneas, gaura y lirios contra la baranda",

@@ -17,7 +17,7 @@ export const patioInterior: Project = {
     "Dos lenguajes para un mismo cantero, tropical y naturalista, y canteros de entrada con una composición sobria y perenne.",
   status: "propuesta",
   featured: true,
-  order: 2,
+  order: 5,
   cover: tropical,
   blocks: [
     {

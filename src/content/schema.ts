@@ -14,6 +14,7 @@ const imageSource = z.object({
 const picture = z.object({
   image: imageSource,
   alt: text,
+  credit: z.object({ text, url: z.url() }).optional(),
 });
 
 const note = z.object({ title: text, text: text.optional() });

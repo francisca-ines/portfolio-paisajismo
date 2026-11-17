@@ -2,6 +2,7 @@ import Image from "next/image";
 import { plantLabel, type Plant, type PlantIndex } from "@/domain/plant";
 import type { PlantSelectionBlock as PlantSelectionBlockData } from "@/domain/project";
 import { SectionTitle } from "../section-title";
+import { PhotoCredit } from "./photo-credit";
 
 type Props = { block: PlantSelectionBlockData; plants: PlantIndex };
 
@@ -52,6 +53,7 @@ function PlantRow({ plant }: { plant: Plant }) {
         {plant.traits.length > 0 && (
           <p className="mt-1 text-xs text-muted">{plant.traits.join(" · ")}</p>
         )}
+        <PhotoCredit picture={plant.picture} />
       </div>
     </div>
   );

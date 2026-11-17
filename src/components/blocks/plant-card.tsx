@@ -1,24 +1,24 @@
 import Image from "next/image";
 import { plantLabel, type Plant } from "@/domain/plant";
+import { PhotoCredit } from "./photo-credit";
 
 export function PlantCard({ plant }: { plant: Plant }) {
-  const label = plantLabel(plant);
   const secondary = plant.scientificName ? plant.commonName : undefined;
   return (
     <article className="space-y-3">
       {plant.picture && (
-        <div className="relative aspect-square overflow-hidden bg-surface">
+        <div className="relative aspect-square w-full max-w-40 overflow-hidden rounded-full bg-surface">
           <Image
             src={plant.picture.image.src}
             alt={plant.picture.alt}
             fill
-            sizes="(min-width: 1024px) 20vw, 50vw"
+            sizes="160px"
             className="object-cover"
           />
         </div>
       )}
       <div>
-        <p className="text-[0.7rem] font-medium uppercase tracking-label">{label}</p>
+        <p className="text-[0.7rem] font-medium uppercase tracking-label">{plantLabel(plant)}</p>
         {secondary && <p className="text-xs text-muted">{secondary}</p>}
       </div>
       {plant.traits.length > 0 && (
@@ -28,6 +28,7 @@ export function PlantCard({ plant }: { plant: Plant }) {
           ))}
         </ul>
       )}
+      <PhotoCredit picture={plant.picture} />
     </article>
   );
 }

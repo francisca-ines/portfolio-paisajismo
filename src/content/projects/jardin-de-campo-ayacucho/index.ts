@@ -17,7 +17,7 @@ export const jardinDeCampoAyacucho: Project = {
   status: "propuesta",
   location: "Ayacucho",
   featured: true,
-  order: 5,
+  order: 3,
   cover: propuesta,
   blocks: [
     {

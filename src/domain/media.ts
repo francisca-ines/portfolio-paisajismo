@@ -8,6 +8,7 @@ export type ImageSource = {
 export type Picture = {
   image: ImageSource;
   alt: string;
+  credit?: { text: string; url: string };
 };
 
 export type Note = {

@@ -1,4 +1,6 @@
 import type { Plant } from "@/domain/plant";
+import mburucuya from "./images/mburucuya.jpg";
+import jazminDeLeche from "./images/jazmin-de-leche.jpg";
 import verbenaBonariensis from "./images/verbena-bonariensis.jpg";
 import salviaPallida from "./images/salvia-pallida.jpg";
 import glandulariaAndina from "./images/glandularia-andina.jpg";
@@ -89,6 +91,11 @@ export const terrazaPlants: Plant[] = [
     traits: [
       "Nativa argentina, ideal para pleno sol",
     ],
+    picture: {
+      image: mburucuya,
+      alt: "Foto de Mburucuyá",
+      credit: { text: "Petar Milošević · CC BY-SA 4.0 · Wikimedia Commons", url: "https://commons.wikimedia.org/wiki/File:Passiflora_caerulea_(makro_close-up).jpg" },
+    },
   },
   {
     id: "jazmin-de-la-selva",
@@ -103,5 +110,10 @@ export const terrazaPlants: Plant[] = [
     traits: [
       "Follaje verde todo el año y flores perfumadas",
     ],
+    picture: {
+      image: jazminDeLeche,
+      alt: "Foto de Jazmín de leche",
+      credit: { text: "Parchaco · CC0 · Wikimedia Commons", url: "https://commons.wikimedia.org/wiki/File:Trachelospermum_jasminoides_Reunion.jpg" },
+    },
   },
 ];

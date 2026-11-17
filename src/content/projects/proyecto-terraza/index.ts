@@ -12,7 +12,7 @@ export const proyectoTerraza: Project = {
     "Terraza con dos alternativas de maceteros, huerta integrada y una paleta vegetal de especies nativas y no nativas.",
   status: "propuesta",
   featured: true,
-  order: 3,
+  order: 1,
   cover: {
     image: portada,
     alt: "Terraza con deck de madera, maceteros de madera con lavandas y gramíneas, y un olivo en maceta junto a la reja",
@@ -61,7 +61,7 @@ export const proyectoTerraza: Project = {
         },
         {
           title: "Opciones de trepadoras",
-          plantIds: ["mburucuya", "jazmin-de-la-selva", "jazmin-de-leche"],
+          plantIds: ["mburucuya", "jazmin-de-leche"],
         },
       ],
     },
