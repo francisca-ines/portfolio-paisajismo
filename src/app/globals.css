@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* Tokens de diseño: únicos colores, fuentes y espaciados de letra del sitio. */
+@theme {
+  --color-*: initial;
+  --color-paper: #f6f4ef;
+  --color-surface: #fbfaf7;
+  --color-ink: #2a2a27;
+  --color-muted: #6f6c64;
+  --color-line: #d8d4ca;
+  --color-leaf: #4a6343;
+  --color-leaf-soft: #e6ece0;
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+
+  --tracking-label: 0.18em;
+  --tracking-title: 0.28em;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  ::selection {
+    background-color: var(--color-leaf-soft);
+  }
+}

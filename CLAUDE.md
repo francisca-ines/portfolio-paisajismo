@@ -2,8 +2,6 @@
 
 Sitio portfolio de un estudio de paisajismo en Argentina. Quien da las indicaciones puede no ser técnico: estas reglas existen para que el código se mantenga ordenado aunque los pedidos sean vagos o cambien seguido. **Si un pedido choca con estas reglas, explicá el conflicto y proponé una alternativa antes de hacer cualquier cosa.**
 
-> Estado: por ahora este documento registra decisiones; todavía no hay código. Describe cómo se tiene que construir, no algo ya implementado.
-
 ## Stack (fijo — no cambiar sin aprobación explícita del dueño del repo)
 
 - **Next.js** (App Router) + **TypeScript** en modo `strict`
@@ -35,15 +33,14 @@ Capas livianas, con la misma idea que Zonda: las dependencias apuntan hacia aden
 src/
   domain/          # TypeScript puro: tipos y reglas del contenido (Project, Plant, Sector, Planter…)
   content/         # Los datos: un archivo por proyecto + catálogo de plantas + esquemas Zod
-    projects/<slug>.ts
-    plants.ts
-    schema.ts
-  application/     # Lectura del contenido: get-projects, get-project-by-slug, get-featured-projects
+    projects/<slug>/index.ts   # datos del proyecto
+    projects/<slug>/*.jpg      # sus imágenes (planos, renders, fotos), importadas desde index.ts
+    plants.ts                  # catálogo de plantas (fotos en content/plants/)
+    schema.ts                  # esquemas Zod
+    index.ts                   # registra los proyectos y valida todo al cargar
+  application/     # Lectura del contenido: getProjects, getProjectBySlug, getFeaturedProjects…
   app/             # Next.js: páginas y rutas
   components/      # UI pura (recibe datos por props)
-public/
-  projects/<slug>/ # Imágenes de cada proyecto (planos, renders, fotos)
-  plants/          # Fotos del catálogo de plantas
 ```
 
 | Capa | Puede importar de | No puede importar de |
@@ -60,22 +57,27 @@ public/
 
 ## Modelo de proyecto
 
-Sigue cómo el estudio presenta sus trabajos (láminas de "Propuesta de paisajismo"):
+Cada proyecto tiene datos generales y una lista ordenada de **bloques**, porque no todas las láminas del estudio tienen la misma estructura (ej: "Balcón / Terraza" se arma por sectores; "Diseño vegetal" por implantación y estaciones).
 
-- **Datos**: `slug`, título (ej: "Balcón / Terraza"), subtítulo (ej: "Propuesta de paisajismo"), ubicación, año, superficie, estado (`propuesta` o `realizado`), destacado sí/no, imagen de portada.
-- **Planos**: una o más opciones (ej: "Opción 1 / Sin huerta", "Opción 2 / Con huerta"), cada una con su imagen.
-- **Sectores**: nombre (ej: "Sector 01 / Lateral izquierdo"), condición de luz (ej: "Sol directo · alta exposición"), descripción, plano del sector y su **paleta vegetal** (referencias al catálogo de plantas).
-- **Composición por jardinera**: nombre, medidas y lista de `{ planta, cantidad }`.
-- **Imágenes finales**: renders y/o fotos, con indicación de cuál es cuál.
+- **Datos**: `slug`, título, subtítulo, contexto opcional (ej: "Estudio de paisaje · Trabajo práctico 01"), resumen, tipo (`propuesta`, `realizado` o `academico`), ubicación, año, superficie, destacado sí/no, orden, portada.
+- **Bloques** (definidos en `domain/project.ts`):
+  - `intro`: concepto con criterios numerados y opcionalmente una imagen.
+  - `plans`: planos con una o más opciones (ej: "Opción 1 / Sin huerta").
+  - `sector`: sector con condición de luz, texto, plano, **paleta vegetal** (ids del catálogo) y **composición por jardinera** (`{ planta, cantidad }`).
+  - `plantGroups`: paleta vegetal por grupos numerados del plano (ej: "02–03 Arbustos de acompañamiento"), cuando no se nombran especies.
+  - `imageNotes`: imagen con notas al costado (plano de implantación, lecturas estacionales).
+  - `gallery`: renders y/o fotos, indicando cuál es cuál.
+- Un bloque nuevo se agrega sólo si ninguno de los existentes sirve: se define en `domain/`, su esquema en `content/schema.ts` y su componente en `components/blocks/`.
 
 **Catálogo de plantas** (`content/plants.ts`): cada especie se carga una sola vez (nombre científico, nombre común, descripción corta, foto) y los proyectos la referencian por id. Nunca duplicar los datos de una planta dentro de un proyecto.
 
 ## Contenido e imágenes
 
-- Todo el contenido se valida con Zod en build y en tests: si falta un dato obligatorio, una planta referenciada no existe o una imagen no está en `public/`, el build falla.
+- Todo el contenido se valida con Zod al cargar (build y tests): si falta un dato obligatorio, una planta referenciada no existe o un slug se repite, el build falla.
+- Las imágenes se **importan** desde el `index.ts` del proyecto (`import plano from "./plano.jpg"`): si el archivo no existe, el build falla, y Next calcula solo el tamaño.
 - Imágenes siempre con `next/image` y `alt` descriptivo en español. Nada de imágenes sin `alt`.
 - Antes de agregar imágenes al repo: reducirlas a un máximo de ~2560 px del lado largo y exportarlas en JPG/WebP de calidad alta. Planos en SVG si existe, si no PNG.
-- Nombres de archivo en `kebab-case`, sin espacios ni tildes (ej: `public/projects/balcon-terraza/plano-opcion-1.png`).
+- Nombres de archivo en `kebab-case`, sin espacios ni tildes (ej: `src/content/projects/balcon-terraza/plano-opcion-1.jpg`).
 - Textos visibles en español (Argentina). No inventar datos de proyectos: si falta algo, preguntar.
 
 ## Diseño
@@ -88,7 +90,7 @@ Sigue cómo el estudio presenta sus trabajos (láminas de "Propuesta de paisajis
 ## Tests
 
 - `domain/`: tests unitarios puros.
-- `content/`: un test que valida todo el contenido (esquemas, referencias a plantas, existencia de imágenes, slugs únicos).
+- `content/`: un test que valida todo el contenido (esquemas, referencias a plantas, imágenes, slugs únicos, que cada carpeta de proyecto esté registrada).
 - `application/`: tests de las funciones de lectura (orden, destacados, proyecto inexistente → 404).
 
 ## Convenciones de código
