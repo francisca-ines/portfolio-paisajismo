@@ -5,6 +5,7 @@ import { ImageNotesBlock } from "./image-notes-block";
 import { IntroBlock } from "./intro-block";
 import { PlansBlock } from "./plans-block";
 import { PlantGroupsBlock } from "./plant-groups-block";
+import { PlantSelectionBlock } from "./plant-selection-block";
 import { SectorBlock } from "./sector-block";
 
 type Props = { blocks: ProjectBlock[]; plants: PlantIndex };
@@ -33,5 +34,7 @@ function Block({ block, plants }: { block: ProjectBlock; plants: PlantIndex }) {
       return <ImageNotesBlock block={block} />;
     case "gallery":
       return <GalleryBlock block={block} />;
+    case "plantSelection":
+      return <PlantSelectionBlock block={block} plants={plants} />;
   }
 }

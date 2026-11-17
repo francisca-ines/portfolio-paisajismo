@@ -1,4 +1,4 @@
-import type { Project } from "@/domain/project";
+import type { Planter, Project } from "@/domain/project";
 import planoOpcion1 from "./plano-opcion-1.jpg";
 import planoOpcion2 from "./plano-opcion-2.jpg";
 import planoSector01 from "./plano-sector-01.jpg";
@@ -6,6 +6,68 @@ import planoSector02 from "./plano-sector-02.jpg";
 import render01 from "./render-01.jpg";
 import render02 from "./render-02.jpg";
 import render03 from "./render-03.jpg";
+import jardineraS101 from "./jardinera-s1-01.jpg";
+import jardineraS102 from "./jardinera-s1-02.jpg";
+import macetonIzquierdo from "./maceton-izquierdo.jpg";
+import jardineraS201 from "./jardinera-s2-01.jpg";
+import jardineraS202 from "./jardinera-s2-02.jpg";
+import jardineraS203 from "./jardinera-s2-03.jpg";
+import macetonDerecho from "./maceton-derecho.jpg";
+
+const sector02Planters: Planter[] = [
+  {
+    name: "Macetón izquierdo",
+    size: "Ø 0,80 aprox.",
+    picture: { image: macetonIzquierdo, alt: "Ilustración del macetón izquierdo con achira, pastos ornamentales y lirios" },
+    items: [
+      { plantId: "canna-indica", quantity: 1 },
+      { plantId: "pennisetum-alopecuroides", quantity: 2 },
+      { plantId: "dietes-grandiflora", quantity: 2 },
+    ],
+  },
+  {
+    name: "Jardinera 01",
+    size: "1,50 × 0,35 aprox.",
+    picture: { image: jardineraS201, alt: "Ilustración de la jardinera 01 con pastos ornamentales, gaura y lirios" },
+    items: [
+      { plantId: "pennisetum-alopecuroides", quantity: 2 },
+      { plantId: "gaura-lindheimeri", quantity: 3 },
+      { plantId: "dietes-grandiflora", quantity: 2 },
+    ],
+  },
+  {
+    name: "Jardinera 02",
+    size: "1,50 × 0,35 aprox.",
+    picture: { image: jardineraS202, alt: "Ilustración de la jardinera 02 con pastos ornamentales, gaura, formio y lirios" },
+    items: [
+      { plantId: "pennisetum-alopecuroides", quantity: 2 },
+      { plantId: "gaura-lindheimeri", quantity: 3 },
+      { plantId: "phormium-tenax", quantity: 1 },
+      { plantId: "dietes-grandiflora", quantity: 2 },
+    ],
+  },
+  {
+    name: "Jardinera 03",
+    size: "1,50 × 0,35 aprox.",
+    picture: { image: jardineraS203, alt: "Ilustración de la jardinera 03 con pastos ornamentales, gaura, lirios y formio" },
+    items: [
+      { plantId: "pennisetum-alopecuroides", quantity: 2 },
+      { plantId: "gaura-lindheimeri", quantity: 3 },
+      { plantId: "dietes-grandiflora", quantity: 2 },
+      { plantId: "phormium-tenax", quantity: 1 },
+    ],
+  },
+  {
+    name: "Macetón derecho",
+    size: "Ø 0,80 aprox.",
+    picture: { image: macetonDerecho, alt: "Ilustración del macetón derecho con achira, pastos ornamentales y lirios" },
+    items: [
+      { plantId: "canna-indica", quantity: 1 },
+      { plantId: "pennisetum-alopecuroides", quantity: 2 },
+      { plantId: "dietes-grandiflora", quantity: 2 },
+    ],
+  },
+];
 
 const sunText =
   "Composición de especies resistentes al sol, con un lenguaje tropical y texturas de gramíneas para dar movimiento y liviandad.";
@@ -63,6 +125,8 @@ export const balconTerraza: Project = {
       planters: [
         {
           name: "Maceta 01",
+          size: "80 × 20 × 40",
+          picture: { image: jardineraS101, alt: "Ilustración de la maceta 01 con ave del paraíso, pastos ornamentales y lirios africanos" },
           items: [
             { plantId: "strelitzia-reginae", quantity: 1 },
             { plantId: "pennisetum-alopecuroides", quantity: 3 },
@@ -71,6 +135,8 @@ export const balconTerraza: Project = {
         },
         {
           name: "Maceta 02",
+          size: "80 × 20 × 40",
+          picture: { image: jardineraS102, alt: "Ilustración de la maceta 02 con pastos ornamentales, ave del paraíso y lirios africanos" },
           items: [
             { plantId: "pennisetum-alopecuroides", quantity: 3 },
             { plantId: "strelitzia-reginae", quantity: 1 },
@@ -95,7 +161,7 @@ export const balconTerraza: Project = {
         "dietes-grandiflora",
         "phormium-tenax",
       ],
-      planters: [],
+      planters: sector02Planters,
     },
     {
       type: "gallery",
