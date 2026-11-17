@@ -3,6 +3,7 @@ import planoOpcion1 from "./plano-opcion-1.jpg";
 import planoOpcion2 from "./plano-opcion-2.jpg";
 import planoSector01 from "./plano-sector-01.jpg";
 import planoSector02 from "./plano-sector-02.jpg";
+import portada from "./portada.jpg";
 import render01 from "./render-01.jpg";
 import render02 from "./render-02.jpg";
 import render03 from "./render-03.jpg";
@@ -83,8 +84,8 @@ export const balconTerraza: Project = {
   featured: true,
   order: 1,
   cover: {
-    image: render01,
-    alt: "Render del balcón con jardineras de gramíneas y macetas con plantas tropicales",
+    image: portada,
+    alt: "Balcón a pleno sol con macetones de achira en los extremos y jardineras de gramíneas, gaura y lirios contra la baranda",
   },
   blocks: [
     {
