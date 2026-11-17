@@ -57,9 +57,9 @@ src/
 
 ## Modelo de proyecto
 
-Cada proyecto tiene datos generales y una lista ordenada de **bloques**, porque no todas las láminas del estudio tienen la misma estructura (ej: "Balcón / Terraza" se arma por sectores; "Diseño vegetal" por implantación y estaciones).
+Cada proyecto tiene datos generales y una lista ordenada de **bloques**, porque no todas las láminas del estudio tienen la misma estructura (ej: "Balcón / Terraza" se arma por sectores; "Proyecto Terraza" por propuestas alternativas y selección vegetal).
 
-- **Datos**: `slug`, título, subtítulo, contexto opcional (ej: "Estudio de paisaje · Trabajo práctico 01"), resumen, tipo (`propuesta`, `realizado` o `academico`), ubicación, año, superficie, destacado sí/no, orden, portada.
+- **Datos**: `slug`, título, subtítulo, contexto opcional (ej: "Estudio de paisajismo · Propuesta vegetal"), resumen, tipo (`propuesta`, `realizado` o `academico`), ubicación, año, superficie, destacado sí/no, orden, portada.
 - **Bloques** (definidos en `domain/project.ts`):
   - `intro`: concepto con criterios numerados y opcionalmente una imagen.
   - `plans`: planos con una o más opciones (ej: "Opción 1 / Sin huerta").

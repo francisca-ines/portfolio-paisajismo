@@ -60,6 +60,7 @@ export const terrazaPlants: Plant[] = [
   },
   {
     id: "lavanda",
+    scientificName: "Lavandula spp.",
     commonName: "Lavanda",
     traits: [],
     picture: { image: lavanda, alt: "Foto de Lavanda" },

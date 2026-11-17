@@ -6,8 +6,8 @@ export function PlantCard({ plant }: { plant: Plant }) {
   const secondary = plant.scientificName ? plant.commonName : undefined;
   return (
     <article className="space-y-3">
-      <div className="relative aspect-square overflow-hidden border border-line bg-surface">
-        {plant.picture && (
+      {plant.picture && (
+        <div className="relative aspect-square overflow-hidden bg-surface">
           <Image
             src={plant.picture.image.src}
             alt={plant.picture.alt}
@@ -15,8 +15,8 @@ export function PlantCard({ plant }: { plant: Plant }) {
             sizes="(min-width: 1024px) 20vw, 50vw"
             className="object-cover"
           />
-        )}
-      </div>
+        </div>
+      )}
       <div>
         <p className="text-[0.7rem] font-medium uppercase tracking-label">{label}</p>
         {secondary && <p className="text-xs text-muted">{secondary}</p>}
