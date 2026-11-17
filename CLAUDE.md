@@ -35,7 +35,7 @@ src/
   content/         # Los datos: un archivo por proyecto + catálogo de plantas + esquemas Zod
     projects/<slug>/index.ts   # datos del proyecto
     projects/<slug>/*.jpg      # sus imágenes (planos, renders, fotos), importadas desde index.ts
-    plants.ts                  # catálogo de plantas (fotos en content/plants/)
+    plants/                    # catálogo de plantas: un archivo por grupo + fotos en plants/images/
     schema.ts                  # esquemas Zod
     index.ts                   # registra los proyectos y valida todo al cargar
   application/     # Lectura del contenido: getProjects, getProjectBySlug, getFeaturedProjects…
@@ -57,19 +57,20 @@ src/
 
 ## Modelo de proyecto
 
-Cada proyecto tiene datos generales y una lista ordenada de **bloques**, porque no todas las láminas del estudio tienen la misma estructura (ej: "Balcón / Terraza" se arma por sectores; "Diseño vegetal" por implantación y estaciones).
+Cada proyecto tiene datos generales y una lista ordenada de **bloques**, porque no todas las láminas del estudio tienen la misma estructura (ej: "Balcón / Terraza" se arma por sectores; "Proyecto Terraza" por propuestas alternativas y selección vegetal).
 
-- **Datos**: `slug`, título, subtítulo, contexto opcional (ej: "Estudio de paisaje · Trabajo práctico 01"), resumen, tipo (`propuesta`, `realizado` o `academico`), ubicación, año, superficie, destacado sí/no, orden, portada.
+- **Datos**: `slug`, título, subtítulo, contexto opcional (ej: "Estudio de paisajismo · Propuesta vegetal"), resumen, tipo (`propuesta`, `realizado` o `academico`), ubicación, año, superficie, destacado sí/no, orden, portada.
 - **Bloques** (definidos en `domain/project.ts`):
   - `intro`: concepto con criterios numerados y opcionalmente una imagen.
   - `plans`: planos con una o más opciones (ej: "Opción 1 / Sin huerta").
-  - `sector`: sector con condición de luz, texto, plano, **paleta vegetal** (ids del catálogo) y **composición por jardinera** (`{ planta, cantidad }`).
+  - `sector`: sector con condición de luz, texto, plano, **paleta vegetal** (ids del catálogo) y **composición por jardinera** (medidas, ilustración opcional y `{ planta, cantidad }`).
   - `plantGroups`: paleta vegetal por grupos numerados del plano (ej: "02–03 Arbustos de acompañamiento"), cuando no se nombran especies.
   - `imageNotes`: imagen con notas al costado (plano de implantación, lecturas estacionales).
-  - `gallery`: renders y/o fotos, indicando cuál es cuál.
+  - `gallery`: renders y/o fotos, indicando cuál es cuál, con título y texto opcionales (ej: cada propuesta alternativa).
+  - `plantSelection`: selección vegetal agrupada (ej: "Nativas", "No nativas", "Trepadoras") con ids del catálogo.
 - Un bloque nuevo se agrega sólo si ninguno de los existentes sirve: se define en `domain/`, su esquema en `content/schema.ts` y su componente en `components/blocks/`.
 
-**Catálogo de plantas** (`content/plants.ts`): cada especie se carga una sola vez (nombre científico, nombre común, descripción corta, foto) y los proyectos la referencian por id. Nunca duplicar los datos de una planta dentro de un proyecto.
+**Catálogo de plantas** (`content/plants/`): cada especie se carga una sola vez (nombre científico y/o nombre común —al menos uno—, características, foto) y los proyectos la referencian por id. Nunca duplicar los datos de una planta dentro de un proyecto.
 
 ## Contenido e imágenes
 

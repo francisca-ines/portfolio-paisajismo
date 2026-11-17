@@ -17,7 +17,7 @@ export function SectorBlock({ block, plants }: Props) {
           {block.condition && (
             <p className="text-[0.65rem] uppercase tracking-label text-muted">{block.condition}</p>
           )}
-          <p className="text-sm leading-relaxed">{block.text}</p>
+          {block.text && <p className="text-sm leading-relaxed">{block.text}</p>}
         </div>
         {block.picture && <Figure picture={block.picture} />}
       </div>

@@ -4,9 +4,13 @@ import type { Project } from "./project";
 export function referencedPlantIds(project: Project): string[] {
   const ids = new Set<string>();
   for (const block of project.blocks) {
-    if (block.type !== "sector") continue;
-    block.plantIds.forEach((id) => ids.add(id));
-    block.planters.forEach((p) => p.items.forEach((i) => ids.add(i.plantId)));
+    if (block.type === "sector") {
+      block.plantIds.forEach((id) => ids.add(id));
+      block.planters.forEach((p) => p.items.forEach((i) => ids.add(i.plantId)));
+    }
+    if (block.type === "plantSelection") {
+      block.groups.forEach((g) => g.plantIds.forEach((id) => ids.add(id)));
+    }
   }
   return [...ids];
 }

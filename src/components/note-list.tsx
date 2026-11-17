@@ -20,7 +20,7 @@ export function NoteList({ title, notes, numbered = false }: Props) {
               )}
               {note.title}
             </p>
-            <p className="mt-1 text-sm text-muted">{note.text}</p>
+            {note.text && <p className="mt-1 text-sm text-muted">{note.text}</p>}
           </li>
         ))}
       </ul>

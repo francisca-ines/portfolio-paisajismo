@@ -1,24 +1,36 @@
 import type { Plant } from "@/domain/plant";
+import strelitziaReginae from "./images/strelitzia-reginae.jpg";
+import pennisetumAlopecuroides from "./images/pennisetum-alopecuroides.jpg";
+import dietesGrandiflora from "./images/dietes-grandiflora.jpg";
+import cannaIndica from "./images/canna-indica.jpg";
+import gauraLindheimeri from "./images/gaura-lindheimeri.jpg";
+import phormiumTenax from "./images/phormium-tenax.jpg";
 
-// Catálogo único de especies. Las características se leyeron de las láminas
-// en baja resolución: confirmar con el estudio antes de publicar.
-export const plants: Plant[] = [
+// Especies usadas en "Balcón / Terraza".
+export const balconPlants: Plant[] = [
   {
     id: "strelitzia-reginae",
     scientificName: "Strelitzia reginae",
     commonName: "Ave del paraíso",
-    traits: [],
+    traits: [
+      "Hoja protagonista",
+      "Aporte tropical",
+      "Floración estacional",
+      "Pleno sol",
+    ],
+    picture: { image: strelitziaReginae, alt: "Foto de Strelitzia reginae" },
   },
   {
     id: "pennisetum-alopecuroides",
     scientificName: "Pennisetum alopecuroides",
-    commonName: "Pasto ornamental",
+    commonName: "Pastos ornamentales",
     traits: [
       "Movimiento y textura",
       "Aspecto liviano",
       "Ideal para sol directo",
       "Bajo mantenimiento",
     ],
+    picture: { image: pennisetumAlopecuroides, alt: "Foto de Pennisetum alopecuroides" },
   },
   {
     id: "dietes-grandiflora",
@@ -26,10 +38,11 @@ export const plants: Plant[] = [
     commonName: "Lirio africano",
     traits: [
       "Floración prolongada",
-      "Tolerante y rústica",
+      "Transición y relleno",
       "Resistente al sol",
       "Bajo mantenimiento",
     ],
+    picture: { image: dietesGrandiflora, alt: "Foto de Dietes grandiflora" },
   },
   {
     id: "canna-indica",
@@ -41,6 +54,7 @@ export const plants: Plant[] = [
       "Resistente al sol",
       "Bajo mantenimiento",
     ],
+    picture: { image: cannaIndica, alt: "Foto de Canna indica" },
   },
   {
     id: "gaura-lindheimeri",
@@ -52,16 +66,18 @@ export const plants: Plant[] = [
       "Resistente al sol",
       "Bajo mantenimiento",
     ],
+    picture: { image: gauraLindheimeri, alt: "Foto de Gaura lindheimeri" },
   },
   {
     id: "phormium-tenax",
     scientificName: "Phormium tenax",
     commonName: "Formio",
     traits: [
-      "Follaje escultórico",
+      "Follaje arquitectónico",
       "Textura y estructura",
       "Resistente al sol",
       "Bajo mantenimiento",
     ],
+    picture: { image: phormiumTenax, alt: "Foto de Phormium tenax" },
   },
 ];

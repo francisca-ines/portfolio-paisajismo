@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { indexPlants, type Plant } from "./plant";
+import { indexPlants, plantLabel, type Plant } from "./plant";
 import type { Project } from "./project";
 import { findDuplicateSlugs, findMissingPlants, referencedPlantIds, sortProjects } from "./project-rules";
 
@@ -23,6 +23,7 @@ function project(overrides: Partial<Project> = {}): Project {
         plantIds: ["a"],
         planters: [{ name: "M", items: [{ plantId: "b", quantity: 2 }] }],
       },
+      { type: "plantSelection", title: "Selección", groups: [{ title: "Nativas", plantIds: ["c"] }] },
     ],
     ...overrides,
   };
@@ -32,11 +33,11 @@ const plant = (id: string): Plant => ({ id, scientificName: id, commonName: id, 
 
 describe("project rules", () => {
   it("collects plant ids from palettes and planters", () => {
-    expect(referencedPlantIds(project()).sort()).toEqual(["a", "b"]);
+    expect(referencedPlantIds(project()).sort()).toEqual(["a", "b", "c"]);
   });
 
   it("reports plants missing from the catalog", () => {
-    const missing = findMissingPlants([project()], indexPlants([plant("a")]));
+    const missing = findMissingPlants([project()], indexPlants([plant("a"), plant("c")]));
     expect(missing).toEqual([{ slug: "p", plantId: "b" }]);
   });
 
@@ -48,6 +49,11 @@ describe("project rules", () => {
     const input = [project({ slug: "b", order: 2 }), project({ slug: "a", order: 1 })];
     expect(sortProjects(input).map((p) => p.slug)).toEqual(["a", "b"]);
     expect(input[0].slug).toBe("b");
+  });
+
+  it("labels a plant by scientific name, falling back to common name", () => {
+    expect(plantLabel({ id: "x", commonName: "Lavanda", traits: [] })).toBe("Lavanda");
+    expect(plantLabel(plant("a"))).toBe("a");
   });
 
   it("rejects duplicated plants in the catalog", () => {

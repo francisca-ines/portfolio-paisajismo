@@ -3,9 +3,7 @@ import { Container } from "./container";
 
 const links = [
   { href: "/proyectos", label: "Proyectos" },
-  { href: "/estudio", label: "Estudio" },
   { href: "/servicios", label: "Servicios" },
-  { href: "/contacto", label: "Contacto" },
 ];
 
 type Props = { name: string; tagline: string };

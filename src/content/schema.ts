@@ -14,9 +14,10 @@ const imageSource = z.object({
 const picture = z.object({
   image: imageSource,
   alt: text,
+  credit: z.object({ text, url: z.url() }).optional(),
 });
 
-const note = z.object({ title: text, text });
+const note = z.object({ title: text, text: text.optional() });
 
 const planter = z.object({
   name: text,
@@ -24,6 +25,7 @@ const planter = z.object({
   items: z
     .array(z.object({ plantId: text, quantity: z.number().int().positive() }))
     .min(1),
+  picture: picture.optional(),
 });
 
 const block = z.discriminatedUnion("type", [
@@ -47,7 +49,7 @@ const block = z.discriminatedUnion("type", [
     type: z.literal("sector"),
     title: text,
     condition: text.optional(),
-    text,
+    text: text.optional(),
     picture: picture.optional(),
     plantIds: z.array(text),
     planters: z.array(planter),
@@ -72,9 +74,18 @@ const block = z.discriminatedUnion("type", [
   z.object({
     type: z.literal("gallery"),
     title: text.optional(),
+    subtitle: text.optional(),
+    text: text.optional(),
     items: z
-      .array(picture.extend({ kind: z.enum(["render", "foto"]) }))
+      .array(picture.extend({ kind: z.enum(["render", "foto"]), caption: text.optional() }))
       .min(1),
+  }),
+  z.object({
+    type: z.literal("plantSelection"),
+    title: text,
+    subtitle: text.optional(),
+    text: text.optional(),
+    groups: z.array(z.object({ title: text, plantIds: z.array(text).min(1) })).min(1),
   }),
 ]);
 
@@ -94,10 +105,14 @@ export const projectSchema = z.object({
   blocks: z.array(block).min(1),
 }) satisfies z.ZodType<Project>;
 
-export const plantSchema = z.object({
-  id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/),
-  scientificName: text,
-  commonName: text,
-  traits: z.array(text),
-  picture: picture.optional(),
-}) satisfies z.ZodType<Plant>;
+export const plantSchema = z
+  .object({
+    id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/),
+    scientificName: text.optional(),
+    commonName: text.optional(),
+    traits: z.array(text),
+    picture: picture.optional(),
+  })
+  .refine((plant) => plant.scientificName ?? plant.commonName, {
+    message: "La planta necesita nombre científico o nombre común",
+  }) satisfies z.ZodType<Plant>;

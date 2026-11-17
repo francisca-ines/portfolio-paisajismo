@@ -15,6 +15,7 @@ export type Planter = {
   name: string;
   size?: string;
   items: PlanterItem[];
+  picture?: Picture;
 };
 
 export type IntroBlock = {
@@ -39,7 +40,7 @@ export type SectorBlock = {
   type: "sector";
   title: string;
   condition?: string;
-  text: string;
+  text?: string;
   picture?: Picture;
   plantIds: string[];
   planters: Planter[];
@@ -65,7 +66,17 @@ export type ImageNotesBlock = {
 export type GalleryBlock = {
   type: "gallery";
   title?: string;
-  items: (Picture & { kind: "render" | "foto" })[];
+  subtitle?: string;
+  text?: string;
+  items: (Picture & { kind: "render" | "foto"; caption?: string })[];
+};
+
+export type PlantSelectionBlock = {
+  type: "plantSelection";
+  title: string;
+  subtitle?: string;
+  text?: string;
+  groups: { title: string; plantIds: string[] }[];
 };
 
 export type ProjectBlock =
@@ -74,7 +85,8 @@ export type ProjectBlock =
   | SectorBlock
   | PlantGroupsBlock
   | ImageNotesBlock
-  | GalleryBlock;
+  | GalleryBlock
+  | PlantSelectionBlock;
 
 export type Project = {
   slug: string;
