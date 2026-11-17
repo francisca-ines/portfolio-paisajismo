@@ -5,7 +5,7 @@ export const site: SiteInfo = {
   name: "Ines & Francisca",
   tagline: "Diseño del paisaje",
   description:
-    "Estudio de diseño del paisaje. Jardines, balcones y terrazas pensados desde la vegetación, la luz y el uso de cada espacio.",
+    "Jardines, balcones y terrazas pensados desde la vegetación, la luz y el uso de cada espacio.",
   about: [
     "Somos Ines y Francisca, un estudio de diseño del paisaje.",
     "Trabajamos cada proyecto a partir de la lectura del lugar: la luz, el uso y las especies que mejor se adaptan a cada espacio.",
