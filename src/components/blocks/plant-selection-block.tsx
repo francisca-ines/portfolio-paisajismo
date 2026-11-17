@@ -6,17 +6,18 @@ import { SectionTitle } from "../section-title";
 type Props = { block: PlantSelectionBlockData; plants: PlantIndex };
 
 export function PlantSelectionBlock({ block, plants }: Props) {
+  const single = block.groups.length === 1;
   return (
     <section className="space-y-10">
       <SectionTitle title={block.title} subtitle={block.subtitle} />
       {block.text && <p className="max-w-2xl text-sm leading-relaxed">{block.text}</p>}
-      <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+      <div className={single ? "" : "grid gap-12 md:grid-cols-2 lg:grid-cols-3"}>
         {block.groups.map((group) => (
           <div key={group.title}>
             <h3 className="mb-6 text-[0.7rem] font-medium uppercase tracking-label text-leaf">
               {group.title}
             </h3>
-            <ul className="space-y-5">
+            <ul className={single ? "grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4" : "space-y-5"}>
               {group.plantIds.flatMap((id) => plants.get(id) ?? []).map((plant) => (
                 <li key={plant.id}>
                   <PlantRow plant={plant} />

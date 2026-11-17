@@ -1,4 +1,5 @@
 import type { Plant } from "@/domain/plant";
+import salviaLeucantha from "./images/salvia-leucantha.jpg";
 
 // Especies usadas en el patio verde y tropical.
 export const patioTropicalPlants: Plant[] = [
@@ -25,6 +26,7 @@ export const patioTropicalPlants: Plant[] = [
     scientificName: "Salvia leucantha",
     commonName: "Salvia",
     traits: [],
+    picture: { image: salviaLeucantha, alt: "Foto de Salvia leucantha" },
   },
   {
     id: "dietes-bicolor",

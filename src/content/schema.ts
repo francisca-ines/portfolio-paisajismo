@@ -16,7 +16,7 @@ const picture = z.object({
   alt: text,
 });
 
-const note = z.object({ title: text, text });
+const note = z.object({ title: text, text: text.optional() });
 
 const planter = z.object({
   name: text,
@@ -76,7 +76,7 @@ const block = z.discriminatedUnion("type", [
     subtitle: text.optional(),
     text: text.optional(),
     items: z
-      .array(picture.extend({ kind: z.enum(["render", "foto"]) }))
+      .array(picture.extend({ kind: z.enum(["render", "foto"]), caption: text.optional() }))
       .min(1),
   }),
   z.object({

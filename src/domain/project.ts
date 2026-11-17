@@ -68,7 +68,7 @@ export type GalleryBlock = {
   title?: string;
   subtitle?: string;
   text?: string;
-  items: (Picture & { kind: "render" | "foto" })[];
+  items: (Picture & { kind: "render" | "foto"; caption?: string })[];
 };
 
 export type PlantSelectionBlock = {

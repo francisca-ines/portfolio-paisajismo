@@ -22,7 +22,7 @@ export function GalleryBlock({ block }: { block: GalleryBlockData }) {
           <Figure
             key={item.image.src}
             picture={item}
-            caption={kindLabels[item.kind]}
+            caption={item.caption ?? kindLabels[item.kind]}
             sizes={sizes}
           />
         ))}

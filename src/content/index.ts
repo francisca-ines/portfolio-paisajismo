@@ -6,12 +6,13 @@ import { plants as rawPlants } from "./plants";
 import { balconTerraza } from "./projects/balcon-terraza";
 import { patioInterior } from "./projects/patio-interior";
 import { patioVerdeTropical } from "./projects/patio-verde-tropical";
+import { jardinDeCampoAyacucho } from "./projects/jardin-de-campo-ayacucho";
 import { proyectoTerraza } from "./projects/proyecto-terraza";
 import { plantSchema, projectSchema } from "./schema";
 
 export { site } from "./site";
 
-const rawProjects: Project[] = [balconTerraza, patioInterior, proyectoTerraza, patioVerdeTropical];
+const rawProjects: Project[] = [balconTerraza, patioInterior, proyectoTerraza, patioVerdeTropical, jardinDeCampoAyacucho];
 
 function loadContent(): { projects: Project[]; plants: PlantIndex } {
   const projects = z.array(projectSchema).parse(rawProjects);
