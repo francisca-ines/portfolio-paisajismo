@@ -48,7 +48,7 @@ const block = z.discriminatedUnion("type", [
     type: z.literal("sector"),
     title: text,
     condition: text.optional(),
-    text,
+    text: text.optional(),
     picture: picture.optional(),
     plantIds: z.array(text),
     planters: z.array(planter),

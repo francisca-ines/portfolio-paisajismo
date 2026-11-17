@@ -17,7 +17,7 @@ export function Figure({
   className = "",
 }: Props) {
   return (
-    <figure className={className}>
+    <figure className={`mx-auto w-full ${className}`} style={{ maxWidth: picture.image.width }}>
       <Image
         src={picture.image.src}
         width={picture.image.width}

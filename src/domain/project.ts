@@ -40,7 +40,7 @@ export type SectorBlock = {
   type: "sector";
   title: string;
   condition?: string;
-  text: string;
+  text?: string;
   picture?: Picture;
   plantIds: string[];
   planters: Planter[];
