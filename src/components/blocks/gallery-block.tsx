@@ -10,7 +10,7 @@ export function GalleryBlock({ block }: { block: GalleryBlockData }) {
     <section className="space-y-10">
       {block.title && <SectionTitle title={block.title} subtitle={block.subtitle} />}
       {block.text && <p className="max-w-2xl text-sm leading-relaxed">{block.text}</p>}
-      <div className={paired ? "grid items-start gap-6 md:grid-cols-[2fr_3fr]" : "grid gap-10"}>
+      <div className={paired ? "grid items-start gap-6 md:grid-cols-2" : "grid gap-10"}>
         {block.items.map((item) => (
           <Figure
             key={item.image.src}

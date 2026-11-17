@@ -1,5 +1,5 @@
 import type { Project } from "@/domain/project";
-import p01RenderA from "./propuesta-01-render-a.jpg";
+import portada from "./portada.jpg";
 import p01RenderB from "./propuesta-01-render-b.jpg";
 import p02RenderA from "./propuesta-02-render-a.jpg";
 import p02RenderB from "./propuesta-02-render-b.jpg";
@@ -14,8 +14,8 @@ export const proyectoTerraza: Project = {
   featured: true,
   order: 3,
   cover: {
-    image: p01RenderB,
-    alt: "Render de la terraza con trepadora florida sobre la reja y un macetero de madera con huerta",
+    image: portada,
+    alt: "Terraza con deck de madera, maceteros de madera con lavandas y gramíneas, y un olivo en maceta junto a la reja",
   },
   blocks: [
     {
@@ -24,7 +24,7 @@ export const proyectoTerraza: Project = {
       subtitle: "Maceteros de madera y privacidad vegetal",
       text: "Cuatro macetas de madera (100 × 40 cm) con vegetación ornamental. Trepadoras sobre la reja para sumar verde, privacidad y una escala más íntima. Huerta de aromáticas y hortalizas integrada al espacio exterior.",
       items: [
-        { kind: "render", image: p01RenderA, alt: "Vista lateral de la terraza con maceteros de madera con gramíneas y floración violeta" },
+        { kind: "render", image: portada, alt: "Vista lateral de la terraza con maceteros de madera, lavandas, gramíneas y un olivo en maceta" },
         { kind: "render", image: p01RenderB, alt: "Vista frontal con trepadora florida sobre la reja, macetero de madera con gramíneas y huerta elevada" },
       ],
     },
